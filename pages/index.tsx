@@ -50,6 +50,7 @@ const GET_CURRENT_INFO = gql`
 const getCurrentInfo = async () => {
   const { data } = await client.query({
     query: GET_CURRENT_INFO,
+    fetchPolicy: 'network-only',
   });
   return data.getCurrentInfo;
 };
