@@ -7,8 +7,8 @@ import client from '../apollo-client';
 import { CurrentInfo } from '../entities/CurrentInfo';
 import { useEffect, useState } from 'react';
 
-const IndexPage = ({ currentInfo }: { currentInfo: CurrentInfo }) => {
-  const [info, setInfo] = useState(currentInfo);
+const IndexPage = () => {
+  const [info, setInfo] = useState(null);
 
   const getData = async () => {
     const currentInfo = await getCurrentInfo();
@@ -16,6 +16,7 @@ const IndexPage = ({ currentInfo }: { currentInfo: CurrentInfo }) => {
   };
 
   useEffect(() => {
+    getData();
     const interval = setInterval(getData, 5000);
     return function cleanup() {
       clearInterval(interval);
@@ -26,10 +27,12 @@ const IndexPage = ({ currentInfo }: { currentInfo: CurrentInfo }) => {
     <>
       <Header />
       <Container maxW="container.xl">
-        <VStack py={[2, 10, 10]} px={[0, 46, 46]}>
-          <DashBoard currentInfo={info} />
-          <CoinBoard currentInfo={info} />
-        </VStack>
+        {info ? (
+          <VStack py={[2, 10, 10]} px={[0, 46, 46]}>
+            <DashBoard currentInfo={info} />
+            <CoinBoard currentInfo={info} />
+          </VStack>
+        ) : null}
       </Container>
     </>
   );
@@ -54,14 +57,5 @@ const getCurrentInfo = async () => {
   });
   return data.getCurrentInfo;
 };
-
-export async function getStaticProps() {
-  const currentInfo = await getCurrentInfo();
-  return {
-    props: {
-      currentInfo,
-    },
-  };
-}
 
 export default IndexPage;
