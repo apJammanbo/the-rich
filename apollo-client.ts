@@ -3,9 +3,12 @@ import { ApolloClient, HttpLink, InMemoryCache } from "@apollo/client";
 const httpLink = new HttpLink({
   uri: "https://dotfeet.loca.lt/graphql",
   credentials: "omit",
-  // fetchOptions: {
-  //   mode: "no-cors",
+  // headers: {
+  //   "Content-Type": "application/json",
   // },
+  fetchOptions: {
+    mode: "cors",
+  },
 });
 
 const client = new ApolloClient({
