@@ -7,8 +7,8 @@ import client from '../apollo-client';
 import { CurrentInfo } from '../entities/CurrentInfo';
 import { useEffect, useState } from 'react';
 
-const IndexPage = () => {
-  const [info, setInfo] = useState(null);
+const IndexPage = ({ currentInfo: firstInfo }: { currentInfo: CurrentInfo }) => {
+  const [info, setInfo] = useState(firstInfo);
 
   const getData = async () => {
     const currentInfo = await getCurrentInfo();
@@ -56,6 +56,16 @@ const getCurrentInfo = async () => {
     fetchPolicy: 'network-only',
   });
   return data.getCurrentInfo;
+};
+
+export const getStaticProps = async () => {
+  const currentInfo = await getCurrentInfo();
+
+  return {
+    props: {
+      currentInfo,
+    },
+  };
 };
 
 export default IndexPage;
