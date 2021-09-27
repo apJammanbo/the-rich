@@ -65,6 +65,7 @@ export const getStaticProps = async () => {
     props: {
       currentInfo,
     },
+    revalidate: 5,
   };
 };
 
