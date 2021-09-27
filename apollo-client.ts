@@ -1,29 +1,29 @@
-import { ApolloClient, HttpLink, InMemoryCache } from "@apollo/client";
+import { ApolloClient, HttpLink, InMemoryCache } from '@apollo/client';
 
 const httpLink = new HttpLink({
-  uri: "https://dotfeet.loca.lt/graphql",
-  credentials: "omit",
+  uri: 'https://dotfeet.loca.lt/graphql',
+  credentials: 'omit',
   // headers: {
   //   "Content-Type": "application/json",
   // },
   fetchOptions: {
-    mode: "cors",
+    mode: 'cors',
   },
 });
 
 const client = new ApolloClient({
-  link: httpLink,
-  // uri: "https://dotfeet.loca.lt/graphql",
+  // link: httpLink,
+  uri: 'https://dotfeet.loca.lt/graphql',
   cache: new InMemoryCache(),
   // fetchOptions: {},
   defaultOptions: {
     watchQuery: {
-      fetchPolicy: "no-cache",
-      errorPolicy: "ignore",
+      fetchPolicy: 'no-cache',
+      errorPolicy: 'ignore',
     },
     query: {
-      fetchPolicy: "no-cache",
-      errorPolicy: "all",
+      fetchPolicy: 'no-cache',
+      errorPolicy: 'all',
     },
   },
 });
