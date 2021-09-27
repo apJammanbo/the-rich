@@ -1,19 +1,7 @@
-import { ApolloClient, HttpLink, InMemoryCache } from '@apollo/client';
-
-const httpLink = new HttpLink({
-  uri: 'https://dotfeet.loca.lt/graphql',
-  credentials: 'omit',
-  // headers: {
-  //   "Content-Type": "application/json",
-  // },
-  fetchOptions: {
-    mode: 'cors',
-  },
-});
+import { ApolloClient, InMemoryCache } from '@apollo/client';
 
 const client = new ApolloClient({
-  // link: httpLink,
-  uri: 'https://dotfeet.loca.lt/graphql',
+  uri: 'https://f4f7-221-167-119-94.ngrok.io/graphql',
   cache: new InMemoryCache(),
   // fetchOptions: {},
   defaultOptions: {
