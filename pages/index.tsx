@@ -16,7 +16,6 @@ const IndexPage = ({ currentInfo: firstInfo }: { currentInfo: CurrentInfo }) => 
   };
 
   useEffect(() => {
-    getData();
     const interval = setInterval(getData, 5000);
     return function cleanup() {
       clearInterval(interval);
